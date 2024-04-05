@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require('cors');
 
 const { connection } = require("./config/db")
-const {productRouter} = require("./routes/product_routes")
+const { productController} = require("./controller/product_controller")
 
 const app = express();
 app.use(cors());
@@ -14,7 +14,9 @@ app.get("/", (req, res) => {
 });
 
 // Routes
-app.use("/product", productRouter);
+app.use("/product",  productController);
+
+
 
 app.listen(process.env.PORT, async () => {
   try {

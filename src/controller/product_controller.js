@@ -1,7 +1,10 @@
+
+const express = require("express");
 const { ProductModel } = require("../model/product_model");
 
+const productController = express.Router();
 
-const getProducts = async (req, res) => {
+productController.get('/', async (req, res) => {
   try {
     // Fetch all products
     const products = await ProductModel.find();
@@ -10,8 +13,6 @@ const getProducts = async (req, res) => {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });
   }
-};
+});
 
-module.exports = {
-  getProducts
-}
+module.exports = {productController};
